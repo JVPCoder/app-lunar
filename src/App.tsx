@@ -1,11 +1,28 @@
-import './styles/App.css';
+import './assets/styles/output.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Home from './pages/home/home';
+import Details from './pages/details/details';
+import { CartProvider } from './context/CartContext';
+import Checkout from './pages/checkout/checkout';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <h1>Sneaker Peak</h1>
-    </div>
+    <CartProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen">
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details/:productId" element={<Details />} />
+              <Route path="/checkout" element={<Checkout />} />
+              {/* Adicione outras rotas aqui */}
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </CartProvider>
   );
-}
+};
 
 export default App;

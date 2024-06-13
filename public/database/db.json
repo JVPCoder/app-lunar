@@ -1,0 +1,64 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "name": "Air Jordan 1 High OG Latte",
+      "price": 1500,
+      "state": "Excelente",
+      "manufacturing": 2012,
+      "size": 38,
+      "sent": "São Paulo - SP",
+      "imgs": ["latte1.jpg", "latte2.jpg", "latte3.jpg"]
+    },
+    {
+      "id": "2",
+      "name": "Air Jordan 4 Military Blue",
+      "price": 1700,
+      "state": "Conservado",
+      "manufacturing": 2016,
+      "size": 41,
+      "sent": "São Bernardo - SP",
+      "imgs": ["blue1.jpg", "blue2.jpg", "blue3.jpg"]
+    },
+    {
+      "id": "3",
+      "name": "Air Jordan 1 High Chicago",
+      "price": 3000,
+      "state": "Excelente",
+      "manufacturing": 2015,
+      "size": 40,
+      "sent": "Curitiba - PR",
+      "imgs": ["chicago1.jpg", "chicago2.jpg", "chicago3.jpg"]
+    },
+    {
+      "id": "4",
+      "name": "Air Jordan 4 Metallic Gold",
+      "price": 1800,
+      "state": "Usado",
+      "manufacturing": 2023,
+      "size": 39,
+      "sent": "Rio de Janeiro - RJ",
+      "imgs": ["gold1.jpg", "gold2.jpg", "gold3.jpg"]
+    },
+    {
+      "id": "5",
+      "name": "Air Jordan 1 High Dark Mocha",
+      "price": 1400,
+      "state": "Conservado",
+      "manufacturing": 2018,
+      "size": 42,
+      "sent": "Balneário Camboriú - SC",
+      "imgs": ["mocha1.jpg", "mocha2.jpg", "mocha3.jpg"]
+    },
+    {
+      "id": "6",
+      "name": "Air Jordan 6 Reverse Oreo",
+      "price": 1000,
+      "state": "Ótimo",
+      "manufacturing": 2020,
+      "size": 39,
+      "sent": "Porto Alegre - RS",
+      "imgs": ["oreo1.jpg", "oreo2.jpg", "oreo3.jpg"]
+    }
+  ]
+}
