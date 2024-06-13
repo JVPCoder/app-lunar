@@ -12,6 +12,7 @@ import ccIcon from '../../assets/imgs/ui-images/cc.png'
 import instagramIcon from '../../assets/imgs/ui-images/instagram.png'
 import xIcon from '../../assets/imgs/ui-images/twitter.png'
 import whatsappIcon from '../../assets/imgs/ui-images/whatsapp.png'
+import pixIcon from '../../assets/imgs/ui-images/pix.svg'
 
 const Icons = {
     add: addIcon,
@@ -26,19 +27,20 @@ const Icons = {
     instagram: instagramIcon,
     x: xIcon,
     whatsapp: whatsappIcon,
+    pix: pixIcon,
 }
 
 type ButtonImageProps = {
-    icon: 'add' | 'remove' | 'close' | 'cart' | 'undo' | 'bag' | 'filter' | 'checked' | 'cc' | 'instagram' | 'x' | 'whatsapp';
+    icon: 'add' | 'remove' | 'close' | 'cart' | 'undo' | 'bag' | 'filter' | 'checked' | 'cc' | 'instagram' | 'x' | 'whatsapp' | 'pix';
 };
 
-export const ButtonImage = ({ icon = 'add' }: ButtonImageProps) => {
+export const ButtonImage = ({ icon = 'add',  }: ButtonImageProps) => {
 
     const buttonIcon = Icons[icon]
 
     return(
         <div>
-            <img src={buttonIcon} alt="Button Icon" className="w-[32px] h-[32px]"/>
+            <img src={buttonIcon} alt="Button Icon" className={`w-[32px] h-[32px]`}/>
         </div>
     );
 };

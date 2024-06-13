@@ -9,14 +9,13 @@ type CartModalProps = {
 
 const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
   const { cartItems, removeFromCart } = useCart();
-  const navigate = useNavigate(); // Utiliza o hook useNavigate para navegação
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const totalAmount = cartItems.reduce((total, item) => total + item.price, 0);
 
   const handleCheckout = () => {
-    // Redireciona para a página de checkout
     navigate('/checkout');
   };
 
@@ -28,8 +27,8 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
         </button>
         <h2 className="text-xl font-semibold mb-4">Seu Carrinho</h2>
         <ul>
-          {cartItems.map((item) => (
-            <li key={item.id} className="mb-2">
+          {cartItems.map((item, index) => ( // Usando index como chave única
+            <li key={index} className="mb-2">
               <div className="flex justify-between items-center">
                 <div>
                   <p className='font-raleway'>{item.name}</p>
@@ -53,12 +52,12 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onClose }) => {
 
         <div className='mt-2 flex justify-between'>
           <p>Total:</p>
-          <p className='font-inter font-bold text-green-700'>R${totalAmount.toFixed(2)}</p>
+          <p className='font-inter font-bold text-green-700 mr-6'>R${totalAmount.toFixed(2)}</p>
         </div>
 
         <div className="mt-4">
           <button
-            onClick={handleCheckout} // Chama a função handleCheckout ao clicar no botão
+            onClick={handleCheckout}
             className="w-full bg-green-700 font-inter font-semibold text-white py-2 rounded hover:bg-green-900 hover:scale-90"
           >
             Pagar Agora

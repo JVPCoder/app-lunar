@@ -1,43 +1,62 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface Product {
   id: number;
   name: string;
   size: number;
   price: number;
-  imgs: string[];
 }
 
-interface CartContextProps {
-  cartItems: Product[];
+interface CartItem extends Product {
+  quantity: number;
+}
+
+interface CartContextType {
+  cartItems: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
+  removeCartAll: () => void; // Nova função para remover todos os itens do carrinho
 }
 
-const CartContext = createContext<CartContextProps | undefined>(undefined);
+const CartContext = createContext<CartContextType>({
+  cartItems: [],
+  addToCart: () => {},
+  removeFromCart: () => {},
+  removeCartAll: () => {}, // Inicialização da função
+});
 
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart must be used within a CartProvider');
-  }
-  return context;
-};
-
-export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const addToCart = (product: Product) => {
-    setCartItems((prevItems) => [...prevItems, product]);
+    const itemIndex = cartItems.findIndex((item) => item.id === product.id);
+
+    if (itemIndex !== -1) {
+      // Item já existe no carrinho, incrementar quantidade
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[itemIndex].quantity++;
+      setCartItems(updatedCartItems);
+    } else {
+      // Item não existe no carrinho, adicioná-lo com quantidade 1
+      const newCartItem: CartItem = { ...product, quantity: 1 };
+      setCartItems([...cartItems, newCartItem]);
+    }
   };
 
   const removeFromCart = (productId: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+    const updatedCartItems = cartItems.filter((item) => item.id !== productId);
+    setCartItems(updatedCartItems);
+  };
+
+  const removeCartAll = () => {
+    setCartItems([]); // Limpa todos os itens do carrinho
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, removeCartAll }}>
       {children}
     </CartContext.Provider>
   );
 };
+
+export const useCart = () => useContext(CartContext);

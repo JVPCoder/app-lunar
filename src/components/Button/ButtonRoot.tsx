@@ -12,15 +12,17 @@ type ButtonProps = {
     children: React.ReactNode;
     style?: 'blackImg' | 'greenImg' | 'greenText' | 'blackText';
     onclick: () => void;
+    disabled?: boolean;
+    transition?: string;
 };
 
-export const ButtonRoot = ({ children, style = 'blackImg', onclick}: ButtonProps) => {
+export const ButtonRoot = ({ children,disabled, transition, style = 'blackImg', onclick}: ButtonProps) => {
     const buttonStyled = Styles[style]
 
     return(
         <button className='border-none' onClick={onclick}>
             <div className="flex items-center justify-center">
-                <div className={buttonStyled}>
+                <div className={buttonStyled + disabled + transition}>
                     {children}
                  </div>
             </div>
